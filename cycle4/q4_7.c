@@ -149,17 +149,30 @@ void deleteNodePos(int pos)
         free(ptr);
     }
 }
+void deleteSmallest()
+{
+    struct node * ptr = head;
+    int smallest = ptr->data;
+    while(ptr->next!=NULL)
+    {
+        ptr=ptr->next;
+        if(smallest>ptr->data)
+        {
+            smallest = ptr->data;
+        }
+    }
+    deleteNode(smallest);
+}
 int main()
 {
     int op,element,item;
     system("clear");
-    // addElement(1);
-    // addElement(2);
+    // addElement(11);
+    // addElement(22);
     // addElement(3);
-    // addElement(4);
-    // addElement(5);
-    // scanf("%d",&op);
-    // deleteNodePos(op);
+    // addElement(43);
+    // addElement(1);
+    // deleteSmallest();
     // display();
     do
     {
@@ -169,7 +182,8 @@ int main()
         printf("\n4. Insert at given position");
         printf("\n5. Delete data");
         printf("\n6. Delete position");
-        printf("\n7. display elements");
+        printf("\n7. Delete Smallest");
+        printf("\n8. display elements");
         printf("\nExit - Any other key");
         printf("\nEnter the operation: ");
         scanf("%d",&op);
@@ -222,9 +236,14 @@ int main()
             break;
 
         case 7: 
+            printf("smallest element deleted");
+            deleteSmallest(element);
+            break;
+
+        case 8: 
             display();
             break;
         }
         printf("\n\n");
-    } while(op<8);
+    } while(op<9);
 }
