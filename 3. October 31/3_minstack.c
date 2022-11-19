@@ -23,6 +23,19 @@ void push(int item)
         }
     }
 }
+int display()
+{
+    int i=0;
+    if(top==-1)
+    {
+        printf("\nStack is Empty");
+        return;
+    }
+    for(i=0;i<=top;i++  )
+    {
+        printf("%d ",stack[i]);
+    }
+}
 void pop()
 {
     if(top==-1)
@@ -30,23 +43,56 @@ void pop()
         printf("Stack is Empty");
     }
     else
-        printf("%d ",stack[top--]);
+    {
+        if(temp[tempTop]==stack[top])
+        {
+            tempTop--;
+        }
+        printf("popped %d ",stack[top--]);
+    }
 }
-void displayMin()
+
+int displayMin()
 {
+    if(top==-1)
+    {
+        printf("stack is empty");
+        return 0;
+    }
     printf("smallest element = %d",temp[tempTop]);
 }
 int main()
 {
-    int size,element,i;
+    int element,i,op;
     system("clear");
-    printf("Enter the size of the stack: ");
-    scanf("%d",&size);
-    printf("Enter %d elements you want to push: ",size);
-    for(i=0;i<size;i++)
+    do
     {
-        scanf("%d",&element);
-        push(element);
-    }
-    displayMin();
+        printf("Choose Operation\n");
+        printf("1. Push\n");
+        printf("2. Pop\n");
+        printf("3. Display\n");
+        printf("4. Minimum Number\n");
+        printf("Press any other key to exit\n");
+        scanf("%d",&op);
+        switch (op)
+        {
+            case 1: 
+                printf("Enter element to push: ");
+                    scanf("%d",&element);
+                    push(element);
+                    printf("pushed %d",element);
+                    break;
+            case 2: 
+                pop();
+                break;
+            case 3: 
+                display();
+                break;
+            case 4: 
+                displayMin();
+                break;
+            default:break;
+        }
+        printf("\n\n");
+    }while(op<=4);
 }
