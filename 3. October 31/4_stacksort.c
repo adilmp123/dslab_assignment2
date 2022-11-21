@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #define MAX 100
 int stack[MAX],top=-1;
 void push(int item)
@@ -35,27 +36,54 @@ void pop()
         printf("Stack is Empty");
     }
     else
-        printf("%d ",stack[top--]);
+    {
+        printf("popped %d ",stack[top--]);
+    }
 }
-void display()
+int display()
 {
-    int i;
-    for(i=0;i<=top;i++)
+    int i=0;
+    if(top==-1)
+    {
+        printf("\nStack is Empty");
+        return 0;
+    }
+    for(i=0;i<=top;i++  )
     {
         printf("%d ",stack[i]);
     }
 }
 int main()
 {
-    int size,element,i;
+    int element,op,i;
     system("clear");
-    printf("Enter the size of the stack: ");
-    scanf("%d",&size);
-    printf("Enter %d elements you want to push: ",size);
-    for(i=0;i<size;i++)
+    do
     {
-        scanf("%d",&element);
-        push(element);
-    }
+        printf("Choose Operation\n");
+        printf("1. Push\n");
+        printf("2. Pop\n");
+        printf("3. Display\n");
+        printf("Press any other key to exit\n");
+        scanf("%d",&op);
+        switch (op)
+        {
+            case 1: 
+                printf("Enter element to push: ");
+                    scanf("%d",&element);
+                    push(element);
+                    printf("pushed %d",element);
+                    break;
+            case 2: 
+                pop();
+                break;
+            case 3: 
+                display();
+                break;
+            default:
+                exit(0);
+                break;
+        }
+        printf("\n\n");
+    }while(op<=3);
     display();
 }
