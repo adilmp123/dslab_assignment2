@@ -6,7 +6,6 @@ struct node
     struct node * next;
 };
 struct node * head = NULL;
-int flag=1;
 struct node * createNode(int data)
 {
     struct node * newNode = (struct node *)malloc(sizeof(struct node));
@@ -18,7 +17,7 @@ void display()
 {
     struct node * ptr = head;
     printf("\n");
-    if(flag==0)
+    if(ptr==NULL)
     {
         printf("queue is empty");
     }
@@ -30,7 +29,7 @@ void display()
             ptr = ptr->next;
         }
         printf("%d ",ptr->data);
-        // printf("%d ",ptr->next->data);
+        printf("%d ",ptr->next->data);
     }
 }
 void enqueue(int data)
@@ -43,7 +42,6 @@ void enqueue(int data)
         head->data=data;
         head->next=head;
         printf("added %d at head",data);
-        flag++;
     }
     else
     {
@@ -53,21 +51,19 @@ void enqueue(int data)
         }
         ptr->next=newNode;
         printf("added %d",data);
-        flag++;
     }
 }
 void dequeue()
 {
     struct node * ptr = head;
     struct node * p = head;
-    if(flag==0)
+    if(ptr==NULL)
     {
         printf("queue is empty");
     }
     else if(ptr==head && ptr->next==head)
     {
         printf("dequeued %d",ptr->data);
-        flag=0;
         head=NULL;
     }
     else
