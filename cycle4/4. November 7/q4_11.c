@@ -31,60 +31,35 @@ void display()
         }
     }
 }
-void push(int item)
+int addAtFront(int item)
 {
     struct node * ptr = head;
     struct node * newNode = createNode(item);
-    if(head==NULL)
+    if(ptr==NULL)
     {
-        head = newNode;
+        head=newNode;
+        return 0;
     }
-    else
-    {
-        while(ptr->next!=NULL)
-        {
-            ptr=ptr->next;
-        }
-        ptr->next=newNode;
-    }
-    printf("pushed %d",item);
+    newNode->next=head;
+    head=newNode;
 }
-void deleteNode(int data)
+void push(int item)
 {
-    struct node * ptr = head;
-    struct node * temp;
-    if(ptr->data==data)
-    {
-        head = ptr->next;
-        free(ptr);
-    }
-    else
-    {
-        while(ptr->data!=data && ptr->next!=NULL)
-        {
-            temp=ptr;
-            ptr = ptr->next;
-        }
-        temp->next = ptr->next;
-        free(ptr);
-    
-    }
+    addAtFront(item);
+    printf("pushed %d",item);
 }
 void pop()
 {
     struct node * ptr = head;
-    if(ptr==NULL)
+    if(head==NULL)
     {
         printf("Stack is empty");
     }
     else
     {
-        while(ptr->next!=NULL)
-        {
-            ptr=ptr->next;
-        }
         printf("popped %d",ptr->data);
-        deleteNode(ptr->data);
+        ptr=ptr->next;
+        head = ptr;
     }
 }
 int main()
